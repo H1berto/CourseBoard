@@ -1,4 +1,5 @@
 <?php	
+  //Fazendo a requisição do arquivo DB.php 
 	require_once './DB.php';
 ?>
 
@@ -9,19 +10,17 @@
 	<meta charset="UTF-8">
 	<title>	CourseBoard</title>
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	 <!--Load the AJAX API-->
+	 <!--Carregando o AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
 
-      // Load the Visualization API and the corechart package.
+      // Carregando a Visualization API e o pacote do corechart .
       google.charts.load('current', {'packages':['corechart']});
 
-      // Set a callback to run when the Google Visualization API is loaded.
+      //Definimos um retorno para ser executado quando a API de visualização do Google for carregada, retornando uma função.
       google.charts.setOnLoadCallback(drawChart);
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
+      // Criamos uma função para gerar os graficos que seram retornadas pela API
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
@@ -61,11 +60,11 @@
        
         ]);
 
-        // Set chart options
+        // Definimos as opções do grafico
         var options = {'title':'1. Por favor, informe seu genêro.'
                        };
 
-        // Instantiate and draw our chart, passing in some options.
+        // Instanciamos o nosso grafico para que seja desenhado de acordo com os nossos dados e opções
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
