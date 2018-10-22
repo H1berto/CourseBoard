@@ -20,7 +20,7 @@
 						
 				}
 
-			
+			} 
 		}catch(PDOException $e){
 			logErros($e);
 			APIUtil::sendJSONResponse(null, 500);
@@ -31,7 +31,7 @@
 	
 
 
-}
+
 
 
  ?>
