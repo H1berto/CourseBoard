@@ -17,21 +17,21 @@ class APIUtil {
 	}
 
 	public static function buildChartJSON($col1,$col2,$response){
+		//Criando um array
 		$table = array();
 		
-
+		//Inserindo no indice 'cols', um array que tem como valores, outros dois arrays com as colunas do grafico que será gerado
 		$table['cols'] = array(
-			//Labels for the chart, these represent the column titles
-			array('id' => , 'label' => ''.$col1.'', 'type' => 'string'),
-			array('id' => , 'label' => ''.$col2.'', 'type' => 'number')
+			array('id' => "", 'label' => $col1, 'type' => 'string'),
+			array('id' => "", 'label' => $col2, 'type' => 'number'),
 		);
 
-		$response->free();
-
+		//Inserindo no indice 'rows', o parametro $response a qual a função recebe
 		$table['rows'] = $response;
 
-		// sendJSONResponse($table,200);
+		//Gerando um arquivo JSON com o array table
 		$jsonTable = json_encode($table, true);
+		//Mostrando o JSON
 		echo $jsonTable;
 		
 

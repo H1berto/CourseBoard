@@ -22,28 +22,47 @@
 
       //Definimos um retorno para ser executado quando a API de visualização do Google for carregada, retornando uma função.
       google.charts.setOnLoadCallback(drawChart);
-
+      google.charts.setOnLoadCallback(drawChart2);
       // Criamos uma função para gerar os graficos que seram retornadas pela API
       function drawChart() {
-
+          //Criamos uma requisição 
           var jsonData = $.ajax({
             url: "controllers.php",
             type: "POST",
             data: "controller=resposta&action=grafico1" ,
             dataType:"json",
-            async: false
+            async: false  
           }).responseText;
 
-          console.log(jsonData)
 
-          var data = google.visualization.arrayToDataTable(jsonData);
-
-          // Definimos as opções do grafico
+          var data = new google.visualization.DataTable(jsonData);
+    
           var options = {'title':'1. Por favor, informe seu genêro.'
                          };
 
-          // Instanciamos o nosso grafico para que seja desenhado de acordo com os nossos dados e opções
+          //Instanciamos o nosso grafico para que seja desenhado de acordo com os nossos dados e opções
           var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
+      }
+
+        function drawChart2() {
+          //Criamos uma requisição 
+          var jsonData = $.ajax({
+            url: "controllers.php",
+            type: "POST",
+            data: "controller=resposta&action=grafico1" ,
+            dataType:"json",
+            async: false  
+          }).responseText;
+
+
+          var data = new google.visualization.DataTable(jsonData);
+    
+          var options = {'title':'1. Por favor, informe seu genêro.'
+                         };
+
+          //Instanciamos o nosso grafico para que seja desenhado de acordo com os nossos dados e opções
+          var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
           chart.draw(data, options);
       }
       
@@ -62,7 +81,7 @@
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-         <div id="chart_div" style="width: 600px; height: 300px"></div>
+         <div id="chart_div2" style="width: 600px; height: 300px"></div>
       </div>
     </div>
   </div>

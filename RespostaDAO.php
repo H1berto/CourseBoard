@@ -1,39 +1,29 @@
 <?php 	
-
-require_once './app/Database/DB.php';
-require_once './src/models/Resposta.php';
+//Requerimos os arquivos necessarios para uso na classe
+require_once 'DB.php';
 require_once './util/APIUtil.php';
 
-Class RespostaDAO extends Resposta{
-
-	/**
-	 * REQUEST METHOD POST(testes estão em GET)
-	 * Função para verificação do usuario
-	 * @param  $email [é o email do objeto Usuario]
-	 * @param  $senha [é a senha do objeto Usuario]
-	 * @return $user [retorna um objeto Usuario com as informações do banco de dados]
-	 */
+Class RespostaDAO{
+	
 	function graphResposta1(){
-		
-
-		try{
+		try{	
+				//Criando e instanciando as variaveis necessarias
 				$rows = array();
                 $APIUtil = new APIUtil();
-               
-                 $i=0;
-                 $sql = DB::getConn()->prepare("SELECT DISTINCT resposta.descricao AS genero,COUNT(resposta.descricao) AS quantidade FROM `resposta` INNER jOIN `pergunta`ON resposta.Pergunta_id = pergunta.id WHERE Pergunta_id =1 AND pergunta.Questionario_id=1 GROUP BY resposta.descricao");
+               //Script SQL para solicitar as respostas da pergunta 1 do questionario
+                $sql = DB::getConn()->prepare("SELECT DISTINCT resposta.descricao AS genero,COUNT(resposta.descricao) AS quantidade FROM `resposta` INNER jOIN `pergunta`ON resposta.Pergunta_id = pergunta.id WHERE Pergunta_id =1 AND pergunta.Questionario_id=1 GROUP BY resposta.descricao");
                  $sql->execute();
-               
-                 $response = $sql->fetch(PDO::FETCH_ASSOC);
-                  
+               //Retorna todos os dados em um array
+                 $response = $sql->fetchAll();
+   				
+   				//Iterando os valores retornados no array e adicionando em rows para se gerar o JSON 
                 foreach($response as $row){
 					$temp = array();
-
-					//Values
-					$temp[] = array('v' => (string) $row['genero']);
-					$temp[] = array('v' => (float) $row['quantidade']);
+					$temp[] = array('v' => $row["genero"]);
+					$temp[] = array('v' => floatval($row["quantidade"]));
 					$rows[] = array('c' => $temp);	
 				}	
+				//Faz a chamada do metodo BuildChartJSON na classe APIUtil, passando como parametro as colunas e as linhas que iram ser enviados via JSON
                   $json =$APIUtil::buildChartJSON('genero','quantidade',$rows);
  
 

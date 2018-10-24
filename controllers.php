@@ -8,8 +8,8 @@ $APIUtil = new APIUtil();
 $authAPI = file_get_contents('php://input');
 $obj = json_decode($authAPI,TRUE);
 $controller = $_POST['controller'];
-$keyRequest = $_POST['keyAPI'];
-$keyAPI = $APIUtil->getKeyAPI();
+// $keyRequest = $_POST['keyAPI'];
+// $keyAPI = $APIUtil->getKeyAPI();
 
 
 switch ($controller) {

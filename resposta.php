@@ -1,8 +1,8 @@
 <?php 
 	
  
-require_once 'src/controllers/UsuarioDAO.php';
-require_once 'src/controllers/AvaliacaoDAO.php';
+// require_once 'src/controllers/UsuarioDAO.php';
+require_once 'RespostaDAO.php';
 require_once 'util/APIUtil.php';
 switch ($_SERVER['REQUEST_METHOD']) {
 	case 'GET':
@@ -44,7 +44,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 						
 				}
 
-			} 
+			
 		}catch(PDOException $e){
 			logErros($e);
 			APIUtil::sendJSONResponse(null, 500);
@@ -52,7 +52,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
 	}
 		
-	
+	}
 
 
 
