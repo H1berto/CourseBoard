@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="img/logo6.png">
 
-    <title>Product example for Bootstrap</title>
+    <title>CourseBoard</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
