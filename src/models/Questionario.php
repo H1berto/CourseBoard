@@ -3,6 +3,7 @@ Class Questionario{
 
 	private $id;
 	private $nome;
+    private $usuario_id;
 
 
     /**
@@ -41,6 +42,26 @@ Class Questionario{
     public function setNome($nome)
     {
         $this->nome = $nome;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsuarioId()
+    {
+        return $this->usuario_id;
+    }
+
+    /**
+     * @param mixed $usuario_id
+     *
+     * @return self
+     */
+    public function setUsuarioId($usuario_id)
+    {
+        $this->usuario_id = $usuario_id;
 
         return $this;
     }

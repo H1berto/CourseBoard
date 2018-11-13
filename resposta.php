@@ -2,7 +2,7 @@
 	
  
 // require_once 'src/controllers/UsuarioDAO.php';
-require_once 'RespostaDAO.php';
+require_once 'src/controllers/RespostaDAO.php';
 require_once 'util/APIUtil.php';
 switch ($_SERVER['REQUEST_METHOD']) {
 	case 'GET':

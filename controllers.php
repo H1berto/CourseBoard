@@ -28,6 +28,10 @@ switch ($controller) {
 	case 'usuario':
 		include 'usuario.php';
 		break;
+
+	case 'codigo':
+		include 'codigo.php';
+		break;
 	default:
 		
 		break;
